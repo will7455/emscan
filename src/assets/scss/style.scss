@@ -1,0 +1,1928 @@
+// VARIABLES
+
+$purplePrimary: #534e73;
+$purple2Primary: #484467;
+$purple3Primary: #8f90a2;
+$bgPrimary: #413d5d;
+$gradientPrimary2 : linear-gradient(to right, #f94f4f, #8e3ddf);
+$alertDangerColor: #f94f4f;
+$alertSuccessColor: #27ae60;
+$alertWarningColor: #f39c12;
+
+*, h1, h2, h3, h4, h5, input, button, p, ul, span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: Source Sans Pro;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+*:focus {
+    outline: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px $purplePrimary inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+a {
+    color: #ff6a7e;
+}
+
+/*#region General*/
+
+.bg-error {
+    background: $alertDangerColor !important;
+}
+
+.bg-warning {
+    background: $alertWarningColor !important;
+}
+
+.container {
+    width: 1270px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+}
+
+.wrapper {
+    min-height: calc(100vh - 402px);
+}
+
+.scroll {
+    &::-webkit-scrollbar {
+        border-radius: 10px;
+        width: 5px;
+        background-color: $purplePrimary;
+        
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #3F3C4E;
+    }
+    
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: $purplePrimary;
+    }
+}
+
+.btn-loading {
+    cursor: not-allowed;
+    opacity: 0.7;
+    img {
+        height: 40px;
+        float: left;
+    }
+    span {
+        margin-left: -40px;
+        vertical-align: -10px;
+    }
+}
+
+.disabled {
+    cursor: no-drop;
+}
+
+.alert {
+    border: solid 1px $alertDangerColor;
+    padding: 13px 20px;
+    color: $alertDangerColor;
+    margin-bottom: 15px;
+}
+
+.alert-success {
+    color: $alertSuccessColor;
+    border-color: $alertSuccessColor;
+}
+
+.btn-general {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #ff6a7e;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+.bg-general {
+    background-color: $bgPrimary;
+}
+
+.header {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04);
+    background-color: $purplePrimary;
+    a {
+        color: white;
+    }
+    .list {
+        width: 30px;
+        display: none;
+    }
+    .container {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .waper-logo {
+            align-items: center;
+            display: flex;
+            width: 25%;
+            p {
+                font-size: 26px;
+                margin-left: 17px;
+            }
+        }
+        .menu {
+            width: 50%;
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            li {
+                margin-left: 80px;
+                font-size: 16px;
+                a {
+                    color: white;
+                }
+                a:hover {
+                    color: #ff6a7e;
+                }
+            }
+
+            & :first-child {
+                margin-left: 0px;
+            }
+        }
+        .waper-button {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .button {
+                width: 100px;
+                margin-left: 20px;
+                cursor: pointer;
+            }
+        }
+        .waper-account {
+            height: 100%;
+            background-color: $purple2Primary;
+            width: 20%;
+            .info {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                p {
+                    font-size: 16px;
+                    margin-right: 12px;
+                }
+                margin-left: 45px;
+                top: 10px;
+                left: -10px;
+                position: relative;
+            }
+            .detail {
+                position: absolute;
+                top: 60px;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                background-color: $purplePrimary;
+                li {
+                    padding: 10px 26px;
+                    border-bottom: 1px solid $purple2Primary;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.fooder {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: $purplePrimary;
+    .container {
+        height: 342px;
+        text-align: center;
+        padding: {
+            left: 108px;
+            right: 108px;
+        }
+        p, h1,a {
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: block;
+            color: white;
+        }
+
+        span {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .waper {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            margin-bottom: 80px;
+            .group {
+                text-align: left;
+                width: 146px;
+                h1 {
+                    padding-bottom: 8px;
+                    border-bottom: 2px solid white;
+                }
+                .logo {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        margin-bottom: 12px;
+                        margin-right: 11px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.logo-tron {
+    background-image: linear-gradient(135deg, #ffcda5, #ee4d5f); 
+}
+
+.logo-bitcoin {
+    background-image: linear-gradient(135deg, #ff6cab, #7366ff);
+}
+
+.logo-ethereum {
+    background-image: linear-gradient(135deg, #ffcf1b, #ff881b);
+}
+
+.logo-binance {
+    background-image: linear-gradient(135deg, #6ee2f5, #6454f0);
+}
+
+.logo-monero {
+    background-image: linear-gradient(135deg, #f00b51, #730062);
+}
+
+.logo-eos {
+    background-image: linear-gradient(135deg, #a7e05f, #12ab97);
+}
+
+.logo-iota {
+    background-image: linear-gradient(136deg, #fd65a7, #962a9f);
+}
+
+.logo-empow {
+    background-image: linear-gradient(135deg, #ff6cab, #7366ff);
+}
+
+.logo-circle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 0 30px 0 rgba(168, 168, 168, 0.3);
+}
+
+.icon-circle {
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background-image: $gradientPrimary2;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-square {
+    border-radius: 8px;
+    width: 33px;
+    height: 33px;
+    text-align: center;
+    box-shadow: 0 0 30px 0 rgba(168, 168, 168, 0.3);
+    display: inline-flex;
+    justify-content: center;
+}
+
+.img-circle {
+    border-radius: 50%;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.06);
+    background-image: $gradientPrimary2;
+    padding: 7px;
+    width: 28px;
+    height: 28px;
+}
+
+.react-select-container {
+    .react-select__control {
+        background-color: white;   /* add custom arrow */
+        min-height: 28px;
+        height: 28px;
+        border: none;
+        .react-select__single-value {
+            color: black;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+        .react-select__indicator {
+            padding: 0px;
+        }
+        .react-select__indicator-separator {
+            display: none;
+        }
+        .react-select__value-container {
+            padding: 0px;
+        }
+    }
+    .react-select__menu {
+        box-shadow: 6px 3px 6px 0 rgba(0, 0, 0, 0.4);
+        color: black;
+        .react-select__menu-list {
+            padding: 0;
+            color: black;
+        }
+        .react-select__option:hover {
+            background-color: #c5c0c0;
+            color: black;
+        }
+        .react-select__option--is-selected {
+            background-color: white;
+            color: black;
+        }
+
+        .react-select__option--is-focused {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+.checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* Hide the browser's default radio button */
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+    }
+    
+    /* On mouse-over, add a grey background color */
+    &:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+    
+    /* When the radio button is checked, add a blue background */
+    input:checked ~ .checkmark {
+        background-image: linear-gradient(to left, #8e3ddf, #ff6a7e);
+    }
+    
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    
+    /* Show the indicator (dot/circle) when checked */
+    input:checked ~ .checkmark:after {
+        display: inline-block;
+    }
+    
+    /* Style the indicator (dot/circle) */
+    .checkmark:after {
+        left: 5px;
+        top: 5px;
+        width: 5px;
+        height: 5px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+}
+
+.waper-page {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    .active {
+        background-color: #ff6a7e;
+    }
+    button {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: solid 1px $purplePrimary;
+        background-color: transparent;
+        margin-right: 16px;
+        &:last-child {
+            margin-right: 0px;
+        }
+    }
+
+    p {
+        margin-right: 16px;
+        margin-bottom: 5px;
+    }
+}
+
+.select-general {
+    width: 100%;
+    .react-select__control {
+        padding: {
+            left: 10px;
+            right: 10px;
+        }
+        width: 100%;
+        border-radius: 8px;
+        height: 60px;
+        background-color: $purplePrimary;
+        .react-select__single-value {
+            color: white;
+        }
+    }
+    .react-select__menu {
+        .react-select__menu-list {
+            background-color: $purplePrimary;
+            color: white;
+        }
+        .react-select__option:hover {
+            background-color: #5e597d;
+            color: white;
+        }
+        .react-select__option--is-selected {
+            background-color: #49436f;
+            color: white;
+        }
+
+        .react-select__option--is-focused {
+            background-color: #5e597d;
+            color: white;
+        }
+    }
+}
+
+.menu-general {
+    background-color: $purplePrimary;
+    padding: {
+        left: 32px;
+        right: 32px;
+    }
+    li {
+        border-bottom: 1px solid $bgPrimary;
+        display: flex;
+        align-items: center;
+        padding: {
+            top: 20px;
+            bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+        }
+        .field {
+            width: 20%;
+            font-weight: bold;
+            display: flex;
+        }
+        .value {
+            display: flex;
+        }
+        &:last-child {
+            border-bottom: 0px;
+        }
+    }
+}
+
+.menu-general-2 {
+    background-color: $purplePrimary;
+    padding: {
+        left: 32px;
+        right: 32px;
+    }
+    li {
+        border-bottom: 1px solid $bgPrimary;
+        display: flex;
+        align-items: center;
+        padding: {
+            top: 20px;
+            bottom: 20px;
+        }
+        p, h1, span {
+            font-size: 16px;
+        }
+    }
+}
+
+.copy {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.copied {
+
+    @keyframes copied {
+        0% {
+            opacity: 0;
+        }
+    
+        20% {
+            opacity: 1;
+            top: -26px;
+        }
+    
+        80% {
+            opacity: 1;
+            top: -26px;
+        }
+    
+        100% {
+            opacity: 0;
+            top: 0px;
+        }
+    }
+
+    &:after {
+        content: "Copied";
+        position: absolute;
+        top: 0px;
+        left: -17px;
+        padding: 3px 5px;
+        border-radius: 4px;
+        font-size: 10px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        background: #39364c;
+        animation: copied 1.5s ease-in-out forwards;
+    }
+}
+
+.ads {
+    text-align: center;
+    margin: {
+        top: 28px;
+        bottom: 28px;
+    }
+}
+
+.group-page {
+    margin-top: 32px;
+    margin-bottom: 64px;
+    display: flex;
+    justify-content: space-between;
+    button {
+        cursor: pointer;
+    }
+    .pre {
+        width: 90px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: $purple3Primary;
+    }
+    .next {
+        width: 90px;
+        height: 40px;
+        border-radius: 8px;
+        border: solid 1px $purplePrimary;
+        background-color: transparent;
+    }
+}
+
+/*#endregion */
+#home {
+    .screen-768 {
+        display: none;
+    }
+    .filter {
+        height: 110px;
+        border-radius: 4px;
+        background-image: linear-gradient(to right, #f94f4f, #8e3ddf);
+        padding: 20px;
+        p {
+            font-size: 16px;
+        }
+        .waper {
+            display: flex;
+            height: 46px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            margin-top: 8px;
+            .select {
+                width: 12%;
+                border-right: 1px solid $bgPrimary;
+                padding: {
+                    left: 12px;
+                    right: 12px;
+                }
+                .react-select__control {
+                    height: 46px;
+                    .react-select__indicator {
+                        svg {
+                            fill: black;
+                        }
+                    }
+                    
+                }
+            }
+            input {
+                width: 90%;
+                padding: {
+                    left: 16px;
+                    right: 16px;
+                }
+                color: black;
+            }
+            .group-search {
+                cursor: pointer;
+                display: flex;
+                width: 5%;
+                background-color: #ff6a7e;
+                justify-content: center;
+                align-items: center;
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+        }
+    }
+    .group-info {
+        height: 136px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+        background-color: $purplePrimary;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: {
+            top: 24px;
+            bottom: 48px;
+        }
+        padding: {
+            left: 28px;
+            right:  28px;
+        }
+        .info {
+            text-align: center;
+            p {
+                &:first-child {
+                    font-size: 36px;
+                }
+                &:last-child {
+                    font-size: 16px;
+                    color: $purple3Primary;
+                }
+            }
+        }
+    }
+    .waper-content {
+        padding: {
+            left: 108px;
+            right: 108px;
+        }
+        .group1 {
+            display: flex;
+            justify-content: space-between;
+            .search {
+                width: 190px;
+                height: 40px;
+                border-radius: 8px;
+                background-color: $purplePrimary;
+                display: flex;
+                align-items: center;
+                padding-left: 16px;
+                input {
+                    width: 100%;
+                    background-color: transparent;
+                    padding-left: 12px;
+                    padding-right: 10px;
+                }
+            }
+            .button {
+                width: 190px;
+            }
+        }
+        
+        .list-coin {
+            margin-top: 27px;
+            .coin {
+                background-color: $purplePrimary;
+                margin-top: 8px;
+                padding: 12px 16px;
+                p {
+                    font-size: 16px;
+                }
+                .info {
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    span {
+                        font-size: 16px;
+                        color: #ff881b; 
+                    }
+                    .stt {
+                        flex: 0.45;
+                    }
+                    .name {
+                        flex: 2.5;
+                        display: flex;
+                        p {
+                            margin-left: 12px;
+                        }
+                        img {
+                            width: 28px;
+                            height: 28px;
+                        }
+                    }
+                    .protocol {
+                        flex: 1.5;
+                    }
+                    .user-24h {
+                        flex: 1.5;
+                        p:last-child{
+                            font-size: 13px;
+                        }
+                    }
+                    .volume-24h {
+                        flex: 1.5;
+                        & :last-child{
+                            font-size: 13px;
+                        }
+                    }
+                    .txs-24h {
+                        flex: 1;
+                    }
+                    .mining-em {
+                        flex: 2;
+                    }
+                    .remaining-token {
+                        flex: 2;
+                        height: 28px;
+                        border-radius: 4px;
+                        background-color: $purple2Primary;
+                    }
+                }
+
+                &:first-child {
+                    background-color: transparent;
+                    .remaining-token {
+                        background-color: transparent;
+                    }
+                }
+
+                .detail {
+                    border-top: 1px solid $bgPrimary;
+                    margin-top: 12px;
+                    padding: 20px 50px;
+                    .waper-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        a {
+                            font-size: 16px;
+                            color: #ff6a7e;
+                        }
+                        .group-right {
+                            .button {
+                                display: inline-block;
+                                width: 108px;
+                                border-radius: 8px;
+                                margin-left: 26px;
+                            }
+                        }
+                    }
+                    
+                    .group {
+                        border-radius: 4px;
+                        background-color: $purple2Primary;
+                        margin: {
+                            top: 35px;
+                            bottom: 20px;
+                        }
+                        padding: 25px 80px;
+                        li {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 20px;
+
+                            div:nth-child(1) {
+                                width: 20px;
+                            }
+
+                            div:nth-child(2) {
+                                width: 200px;
+                            }
+                            div:nth-child(3) {
+                                width: 400px;
+                            }
+                        }
+                        .waper-page{
+                            margin-top: 40px;
+                        }
+                    }
+                   
+                }
+            }
+        }
+        
+    }
+}
+
+#submit-dapp {
+    .title {
+        margin-top: 27px;
+        margin-bottom: 60px;
+        h1 {
+            font-size: 25px;
+        }
+        p {
+            margin-top: 4px;
+            font-size: 13px;
+        }
+    }
+
+    .form {
+        p {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .input {
+            width: 100%;
+            height: 60px;
+            border-radius: 8px;
+            background-color: $purplePrimary;
+            margin-top: 12px;
+            padding: {
+                left: 10px;
+                right: 10px;
+            }
+        }
+        .group1 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            .left {
+                width: 15%;
+                .inputfile {
+                    opacity: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    z-index: -1;
+                }
+                .inputfile + label {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 190px;
+                    margin-top: 12px;
+                    width: 100%;
+                    font-size: 1.25em;
+                    font-weight: 700;
+                    cursor: pointer;
+                    border: 1px solid #707070;
+                }
+                img {
+                    width: 100%;
+                    height: 190px;
+                    border: 1px solid #707070;
+                    margin-top: 12px;
+                    cursor: pointer;
+                }
+                .inputfile:focus + label + img,
+                .inputfile + label:hover + img:hover {
+                    background-color: $purplePrimary;
+                }
+                
+            }
+            .right {
+                width: 83%;
+                .child-right {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .select-general {
+                    margin-top: 12px;
+                }
+            }
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            background-color: $purplePrimary;
+            margin-bottom: 30px;
+            padding: 30px;
+        }
+        .waper-group {
+            border-radius: 8px;
+            background-color: $purple2Primary;
+            padding: 28px 26px;
+            .group2 {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 28px;
+                .child {
+                    width: 49%;
+                }
+                .select-general {
+                    margin-top: 12px;
+                }
+            }
+            .delete {
+                text-align: right;
+                button {
+                    cursor: pointer;
+                    width: 119px;
+                    height: 40px;
+                    border-radius: 8px;
+                    border: solid 1px #ff6a7e;
+                    background-color: transparent;
+                    font-size: 16px;
+                    color: #ff6a7e;
+                }
+            }
+            & :last-child {
+                margin-bottom: 0px;
+            }
+        }
+        .add {
+            text-align: center;
+            margin-top: 32px;
+            button {
+                width: 190px;
+                height: 40px;
+                border-radius: 8px;
+                border: solid 1px #ff6a7e;
+                background-color: transparent;
+                font-size: 16px;
+                color: #ff6a7e;
+                cursor: pointer;
+            }
+        }
+        .group3 {
+            width: 100%;
+            margin-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .child {
+                width: 49%;
+            }
+        }
+
+        .button {
+            width: 190px;
+            margin-top: 40px;
+            margin-bottom: 72px;
+        }
+    }
+}
+
+#tron-transaction, #ethereum-transaction {
+    .menu-general {
+        margin-bottom: 16px;
+        li {
+            h1 {
+                font-size: 16px;
+            }
+            .button {
+                cursor: pointer;
+                width: 120px;
+                height: 32px;
+                border-radius: 4px;
+                background-color: #5fc242;
+            }
+            .value {
+                & :first-child {
+                    margin-right: 5px;
+                }
+            }
+            .field {
+                & :first-child {
+                    margin-right: 5px;
+                }
+            }
+            .text {
+                font-size: 13px;
+                color: $purple3Primary;
+            }
+        }
+    }
+}
+
+#ethereum-transaction {
+    .value {
+        align-items: center;
+    }
+    .label {
+        border-radius: 4px;
+        background-color: $bgPrimary;
+        padding: 3px 10px;
+        font-size: 11px;
+        color: #8f90a2;
+    }
+    .color {
+        color: #ff6a7e;
+    }
+
+    .input-data {
+        display: block;
+    }
+}
+
+#tron-address, #ethereum-address {
+    .waper-address {
+        background-color: $purplePrimary;
+        margin-bottom: 15px;
+        .title {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 15px 32px;
+            border-bottom: 1px solid $bgPrimary;
+            p {
+                font-size: 20px;
+                margin-left: 16px;
+            }
+        }
+        .content {
+            display: flex;
+            .menu-general {
+                width: 70%;
+            }
+            .group-right {
+                margin-top: 40px;
+                margin-left: 70px;
+                .waper-circular {
+                    display: flex;
+                    align-items: center;
+                    .circular {
+                        width: 120px;
+                        height: 120px;
+                        .CircularProgressbar-path {
+                            stroke: #ff6a7e;
+                        }
+                        .CircularProgressbar-trail {
+                            stroke: white;
+                        }
+                        .CircularProgressbar-text {
+                            fill: white;
+                        }
+                        p {
+                            font-size: 13px;
+                            font-weight: bold;
+                        }
+                    }
+                    .circular2 {
+                        .CircularProgressbar-path {
+                            stroke: #9f5ae4;
+                        }
+                    }
+                    .text {
+                        margin-left: 40px;
+                        & :first-child {
+                            font-size: 13px;
+                            color: $purple3Primary;
+                        }
+                        & :last-child {
+                            font-size: 36px;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    .list-token {
+        background-color: $purplePrimary;
+        margin-bottom: 15px;
+        .menu-general-2 {
+            .token {
+                width: 25%;
+                display: flex;
+                p {
+                    color: #ff6a7e;
+                }
+            }
+            .token-type, .id , .precision, .balance, .price, .value {
+                width: 12.5%;
+            }
+        }
+        .waper-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 15px 32px;
+            margin-bottom: 40px;
+
+            .active {
+                background-color: #ff6a7e;
+                color: white;
+            }
+          
+            button {
+                cursor: pointer;
+                height: 32px;
+                border-radius: 8px;
+                border: solid 1px #ff6a7e;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: bold;
+                color: #ff6a7e;
+                padding: 6px 12px;
+                margin-right: 12px;
+            }
+        }
+        .token {
+            p {
+                margin-left: 10px;
+            }
+        }
+        .value {
+            & :last-child {
+                font-size: 13px;
+                color: $purple3Primary;
+            }
+        }
+        .waper-page {
+            margin-top: 20px;
+            padding-bottom: 20px;
+            button {
+                border: solid 1px $bgPrimary;
+            }
+        }
+    }
+}
+
+#ethereum-address {
+    .waper-address {
+        .content {
+            .menu-general {
+                width: 100%;
+            }
+        }
+    }
+
+    .select-general {
+        width: 349px;
+        border-radius: 4px;
+        .react-select__control {
+            height: 32px;
+            background-color: #ff6a7e;
+        }
+    }
+
+    .token {
+        position: relative;
+        button {
+            cursor: pointer;
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 349px;
+            height: 32px;
+            border-radius: 4px;
+            background-color: #ff6a7e;
+            padding: {
+                left: 10px;
+                right: 10px;
+            }
+            img {
+                width: 15px;
+            }
+        }
+    }
+
+    .waper-token {
+        position: absolute;
+        width: 348px;
+        border-radius: 4px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        background-color: $bgPrimary;
+        margin-top: 5px;
+        padding: 16px 8px;
+        .scroll {
+            height: 200px;
+            overflow: auto;
+        }
+        input {
+            width: 100%;
+            height: 32px;
+            border-radius: 4px;
+            background-color: $purplePrimary;
+            padding: {
+                left: 7px;
+                right: 7px;
+            }
+        }
+        .title-token {
+            height: 33px;
+            background-color: #635d8b;
+            margin-top: 12px;
+            padding: 7px;
+            p {
+                font-size: 13px;
+                font-weight: bold;
+            }
+        }
+        li {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid $purple2Primary;
+            padding: {
+                top: 8px;
+                bottom: 8px;
+            }
+            p {
+                font-size: 13px;
+            }
+            .child-left {
+                display: flex;
+                align-items: center;
+                img {
+                    width: 25px;
+                }
+                p {
+                    margin-left: 10px;
+                }
+            }
+            .child-right {
+                text-align: right;
+                p:last-child {
+                    color: #8f90a2;
+                }
+            }
+        }
+    }
+
+    .list-token {
+        .menu-general-2 {
+            li {
+                justify-content: space-between;
+            }
+          
+            p, h1 {
+                width: 128px;
+            }
+
+            .with-big {
+                width: 170px;
+            }
+
+            .with-small {
+                width: 40px;
+            }
+
+            .label {
+                height: 28px;
+                width: 60px;
+                border-radius: 4px;
+                background-color: $bgPrimary;
+                text-align: center;
+                padding-top: 4px;
+            }
+        }
+    }
+
+    .group-page {
+        align-items: center;
+        padding: {
+            left: 32px;
+            right: 32px;
+        }
+        .next {
+            border: 1px solid $purple3Primary;
+        }
+    }
+}
+
+#sign-up, #sign-in, #forgot-password {
+    form {
+        width: 470px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+        background-color: $bgPrimary;
+        padding: 24px 26px;
+        margin: 50px auto;
+        p {
+            font-size: 16px;
+        }
+        span {
+            font-size: 16px;
+            color: #ff6a7e;
+            cursor: pointer;
+        }
+        .child {
+            margin-bottom: 38px;
+            p {
+                font-weight: bold;
+            }
+            input {
+                width: 100%;
+                height: 60px;
+                border-radius: 8px;
+                background-color: $purplePrimary;
+                margin-top: 12px;
+                padding: {
+                    left: 16px;
+                    right: 16px;
+                }
+            }
+        }
+        .waper {
+            display: flex;
+            margin-bottom: 55px;
+            .checkbox {
+                .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 18px;
+                    width: 18px;
+                    border-radius: 4px;
+                    background-color: #eee;
+                }
+            }
+        }
+
+        button {
+            height: 48px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .text {
+            margin-top: 21px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            a {
+                font-size: 16px;
+                color: #ff6a7e;
+                cursor: pointer;
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+#sign-in {
+    .login {
+        margin-top: 50px;
+    }
+    .forgot {
+        display: block;
+        margin-top: 8px;
+        text-align: right;
+        font-size: 13px;
+        color: #ff6a7e;
+        font-weight: normal;
+    }
+}
+
+#forgot-password {
+    button {
+        margin-top: 166px;
+    }
+}
+
+#bonus {
+    .screen-768 {
+        display: none;
+    }
+    .option {
+        display: flex;
+        align-items: center;
+        p {
+            font-size: 13px;
+            margin-left: 5px;
+            margin-top: 10px;
+        }
+    }
+    .waper-header {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 70px;
+        .waper-search {
+            width: 40%;
+            background-color: $purplePrimary;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            justify-content: center;
+            padding: 16px 10px;
+            input {
+                width: 100%;
+                border-radius: 4px;
+                height: 32px;
+                background-color: $purple2Primary;
+                padding: {
+                    left: 10px;
+                    right: 10px;
+                }
+            }
+            .dapp {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-top: 1px solid $purple2Primary;
+                padding: {
+                    top : 10px;
+                    bottom: 10px;
+                }
+                p {
+                    font-size: 13px;
+                }
+                .group-left {
+                    display: flex;
+                    p {
+                        margin-left: 10px;
+                    }
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                    }
+                }
+                .group-right {
+                    text-align: right;
+                    p:last-child {
+                        color: #8f90a2;
+                    }
+                    span {
+                        color: #ff881b;
+                    }
+                }
+            }
+        }
+      
+        .child {
+            p {
+                &:first-child {
+                    font-size: 16px;
+                }
+
+                &:last-child {
+                    margin-top: 28px;
+                    font-size: 26px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .form {
+        width: 1055px;
+        border-radius: 4px;
+        background-color: $purplePrimary;
+        margin: 66px auto;
+        padding-bottom: 55px;
+        p {
+            font-size: 16px;
+        }
+        .menu {
+            background-color: $purple2Primary;
+            height: 52px;
+            display: flex;
+            div {
+                width: 50%;
+                height: 100%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .active {
+                background-color: $purplePrimary;
+            }
+        }
+
+        .set-bonus {
+            padding: 33px 175px;
+            input {
+                width: 100%;
+                height: 40px;
+                border-radius: 8px;
+                background-color: $purple2Primary;
+                text-align: center;
+                padding: {
+                    left: 16px;
+                    right: 16px;
+                }
+            }
+            .waper {
+                display: flex;
+                margin-bottom: 20px;
+                justify-content: space-between;
+                .child {
+                    width: 45%;
+                    p {
+                        color: $purple3Primary;
+                        margin-bottom: 10px;
+                    }
+
+                    .group {
+                        display: flex;
+                        .select-general {
+                            width: 50%;
+                            .react-select__control {
+                                border-top-right-radius: 0px;
+                                border-bottom-right-radius: 0px;
+                                height: 40px;
+                                background-color: $purple2Primary;
+                            }
+                        }
+
+                        input {
+                            border-top-left-radius: 0px;
+                            border-bottom-left-radius: 0px;
+                            margin-left: 1px;
+                        }
+
+                       
+                    }
+
+                    .child-child {
+                        display: flex;
+                        input {
+                            border-top-right-radius: 0px;
+                            border-bottom-right-radius: 0px;
+                        }
+
+                        span {
+                            background-color: $purple2Primary;
+                            padding-right: 10px;
+                            border-top-right-radius: 8px;
+                            border-bottom-right-radius: 8px;
+                            p {
+                                padding-top: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            button {
+                width: 200px;
+                margin-top: 12px;
+            }
+        }
+
+        .history {
+            .content {
+                padding: 28px 110px;
+                
+                .time, .total-pay, .buyer, .total-buy {
+                    width: 200px;
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                    display: inline-block;
+                    text-align: center;
+                }
+                li {
+                    text-align: center;
+                }
+                .title {
+                    p {
+                        color: #8f90a2;
+                    }
+                }
+            }
+            .waper-page {
+                button {
+                    border: solid 1px $purple2Primary;
+                }
+            }
+           
+            
+        }
+       
+    }
+}
+
+#transaction-detail {
+    .wrapper .waper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 100px;
+        .list {
+            background-color: $purplePrimary;
+            padding: {
+                left: 32px;
+                right: 32px;
+            }
+            width: 45%;
+            li {
+                border-bottom: 1px solid $bgPrimary;
+                padding: {
+                    top: 20px;
+                    bottom: 20px;
+                }
+                div {
+                    display: flex;
+                    justify-content: space-between;
+                    
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1270px) {
+    .container{
+        width: 768px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container{
+        width: 100%;
+    }
+
+    .header {
+        .list {
+            cursor: pointer;
+            display: block;
+            margin-left: 10px;
+        }
+        .container {
+            .waper-logo {
+                width: 100%;
+                justify-content: center;
+            }
+            .menu, .waper-account, .waper-button {
+                display: none;
+            }
+        }
+
+        .menu-header {
+            a {
+                color: white;
+            }
+            position: absolute;
+            top: 60px;
+            float: right;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            background-color: $purplePrimary;
+            li {
+                padding: 10px 26px;
+                border-bottom: 1px solid $purple2Primary;
+                cursor: pointer;
+            }
+        }
+        
+    }
+
+    .fooder {
+        .container {
+            padding: 10px;
+        }
+    }
+
+    .ads {
+        img {
+            width: 100%;
+        }
+    }
+    #home {
+        .screen-normal {
+            display: none;
+        }
+        .screen-768 {
+            display: block;
+        }
+        
+        .filter {
+            .waper {
+                .select {
+                    display: none;
+                }
+                input {
+                    border-radius: 8px;
+                }
+                .group-search {
+                    width: 15%;
+                }
+            }
+           
+        }
+        .group-info {
+            flex-direction: column;
+            height: auto;
+    
+            .info {
+                margin-bottom: 30px;
+            }
+        }
+        .waper-content {
+            padding: {
+                left: 20px;
+                right: 20px;
+            }
+            .group1 {
+                .search {
+                    width: 100%;
+                }
+               
+            }
+            .list-coin {
+                width: 100%;
+                .coin {
+                    .title {
+                        display: none;
+                    }
+
+                    .info {
+                        display: block;
+                        .child-1 {
+                            text-align: center;
+                            .name {
+                                justify-content: center;
+                                p {
+                                    font-size: 24px;
+                                    margin-top: -2px;
+                                }
+                            }
+                        }
+                        .child-2 {
+                            margin-top: 10px;
+                            display: flex;
+                            justify-content: space-between;
+                            .protocol {
+                                flex: 0;
+                            }
+                        }
+                        .child-child {
+                            display: block;
+                            text-align: right;
+                        }
+                    }
+                    .detail {
+                        padding: 20px 10px;
+                        .group {
+                            margin-top: 20px;
+                            padding: 10px 10px;
+                            li {
+                                display: block;
+                            }
+
+                            .logo {
+                                float: left;
+                            }
+
+                            .status {
+                                margin-top: 5px;
+                                margin-left: 20px;
+                            }
+                        }
+                    }
+                    &:first-child {
+                        background-color: $purplePrimary;
+                    }
+                }
+            }
+        }
+
+    } 
+
+    #submit-dapp {
+        .title {
+            padding: {
+                left: 10px;
+                right: 10px;
+            }
+        }
+        .form {
+            .group1 {
+                .left {
+                    width: 40%;
+                }
+                .right {
+                    width: 58%;
+                }
+             }
+        }
+        
+    }
+
+    #bonus {
+        .screen-normal {
+            display: none;
+        }
+        .screen-768 {
+            display: block;
+        }
+        .waper-header {
+            display: block;
+            .waper-search {
+                width: 100%;
+            }
+            .child {
+                display: inline-block;
+                margin-top: 20px;
+                width: 50%;
+                text-align: center;
+            }
+        }
+        .form {
+            width: 100%;
+            .set-bonus {
+                padding: 10px;
+                .waper .child .group .select-general {
+                    width: 40%;
+                    .react-select__menu {
+                        width: 150px;
+                    }
+                }
+            }
+            .history {
+                .content {
+                    padding: 20px;
+                }
+                li {
+                    margin-bottom: 50px;
+                    display: block;
+                    .child {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+               
+            }
+        }
+    }
+
+    #tron-address, #ethereum-address {
+        .list-token {
+            width: 1200px;
+            overflow: auto;
+        }
+    }
+
+    #transaction-detail {
+        .wrapper .waper {
+            display: block;
+            .list {
+                margin-bottom: 50px;
+                width: 100%;
+            }
+        }
+    }
+
+    #sign-up, #sign-in, #forgot-password {
+        form {
+            width: 100%;
+        }
+    }
+}
