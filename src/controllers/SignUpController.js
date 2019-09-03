@@ -72,8 +72,6 @@ class SignUpController extends Component {
 
                     var verify = await FirebaseService.verify();
        
-                    console.log(verify);
-                    
                     if (verify) {
                         ServerAPI.createUser(verify)
                     }

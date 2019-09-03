@@ -9,6 +9,7 @@ import SignInController from './controllers/SignInController'
 import ForgotPassword from './controllers/ForgotPassword'
 import BonusController from './controllers/BonusController'
 import EthereumAddressController from './controllers/EthereumAddressController'
+import EditDappController from './controllers/EditDappController'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import FirebaseService from './services/FirebaseService'
 import { connect } from 'react-redux';
@@ -20,6 +21,11 @@ import './assets/scss/style.scss';
 import TopHolderController from './controllers/TopHolderController';
 
 const routes = [
+    {
+        path : '/editdapp',
+        exact : false,
+        main : ({location, match}) => <EditDappController location={location}/>
+    },
     {
         path : '/ethereum/address/:address?',
         exact : false,

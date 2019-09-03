@@ -600,7 +600,6 @@ class BonusController extends Component {
     }
 
     render() {
-        console.log(this.state.currentDapp);
         return (
             <div className="bg-general" id="bonus">
                 <Headers />

@@ -209,6 +209,14 @@ const ServerAPI = {
             .catch(error => (reject(error.response.data)))
         })
     },
+
+    updateDapp(data, idToken) {
+        return new Promise ( (resolve,reject) => {
+            Axios.put(`${API_ENDPOINT}/dapp?idToken=${idToken}`, data)
+            .then(res => (resolve(res.data)))
+            .catch(error => (reject(error.response.data)))
+        })
+    },
 }
 
 export default ServerAPI;

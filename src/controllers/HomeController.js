@@ -20,6 +20,7 @@ import $ from "jquery"
 import { API_ENDPOINT } from '../constants/index'
 import Countdown from 'react-countdown-now';
 import Utils from '../utils/index'
+import FirebaseService from '../services/FirebaseService'
 
 class HomeController extends Component {
 
@@ -59,7 +60,6 @@ class HomeController extends Component {
             bonusLimit: 0,
             bonusSent: 0,
             bonusSent2: 0,
-            userAdded: 0
         };
     };
     
@@ -78,6 +78,7 @@ class HomeController extends Component {
     }
 
     componentDidMount() {
+        
         this.loadDapp(this.state.page, this.state.key);
         this.loadInfo();
     } 
@@ -361,6 +362,15 @@ class HomeController extends Component {
                     <div className="waper-header">
                         <a href={currentDapp.website} target="_blank" rel="noopener noreferrer">{currentDapp.website}</a>
                         <div className="group-right">
+                            {FirebaseService.user.uid === currentDapp.user_uuid && <Link className="button" to={{
+                                pathname: "/editdapp",
+                                state: { 
+                                    dapp: currentDapp
+                                }
+                            }}>
+                                <Button>Edit</Button>
+                            </Link>}
+
                             <Link className="button" to={{
                                 pathname: "/bonus",
                                 state: { 
