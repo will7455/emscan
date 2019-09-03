@@ -200,7 +200,15 @@ const ServerAPI = {
             .then(res => (resolve(res.data)))
             .catch(error => (reject(error.response.data)))
         })
-    }
+    },
+
+    createUser(idToken) {
+        return new Promise ( (resolve,reject) => {
+            Axios.post(`${API_ENDPOINT}/user?idToken=${idToken}`)
+            .then(res => (resolve(res.data)))
+            .catch(error => (reject(error.response.data)))
+        })
+    },
 }
 
 export default ServerAPI;

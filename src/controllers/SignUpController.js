@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import FirebaseService from '../services/FirebaseService'
 import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
+import ServerAPI from '../ServerAPI';
 
 class SignUpController extends Component {
     constructor(props) {
@@ -57,7 +58,7 @@ class SignUpController extends Component {
         FirebaseService.register(
             email, 
             password, 
-            (error) => {
+            async (error) => {
                 if (error) {
                     this.setState({
                         error,
@@ -68,6 +69,14 @@ class SignUpController extends Component {
                         error: false,
                         loading: false,
                         success: 'Signup successfully. You can login now'}) 
+
+                    var verify = await FirebaseService.verify();
+       
+                    console.log(verify);
+                    
+                    if (verify) {
+                        ServerAPI.createUser(verify)
+                    }
                 }
             }
         )
