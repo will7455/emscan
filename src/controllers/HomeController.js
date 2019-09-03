@@ -21,6 +21,7 @@ import { API_ENDPOINT } from '../constants/index'
 import Countdown from 'react-countdown-now';
 import Utils from '../utils/index'
 import FirebaseService from '../services/FirebaseService'
+import { connect } from 'react-redux';
 
 class HomeController extends Component {
 
@@ -362,7 +363,7 @@ class HomeController extends Component {
                     <div className="waper-header">
                         <a href={currentDapp.website} target="_blank" rel="noopener noreferrer">{currentDapp.website}</a>
                         <div className="group-right">
-                            {FirebaseService.user.uid === currentDapp.user_uuid && <Link className="button" to={{
+                            {(this.props.loggedIn && FirebaseService.user.uid === currentDapp.user_uuid) && <Link className="button" to={{
                                 pathname: "/editdapp",
                                 state: { 
                                     dapp: currentDapp
@@ -607,4 +608,7 @@ class HomeController extends Component {
     }
 }
 
-export default HomeController;
+export default connect(state => ({
+    loggedIn: state.app.loggedIn,
+}), ({
+}))(HomeController)

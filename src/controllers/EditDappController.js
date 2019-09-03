@@ -253,14 +253,10 @@ class EditDappController extends Component {
                         </div>
                     </div>
                     <div className="right">
-                        <div className="child-right" style={{marginBottom: '38px'}}>
-                            <div style={{width: '49%'}}>
+                        <div style={{marginBottom: '38px'}}>
+                            <div>
                                 <p>Dapp Name</p>
                                 <input defaultValue={this.state.dapp.fullname} placeholder="Enter your Dapp's name" className="input" name="fullname" onBlur={this.onBlur}/>
-                            </div>
-                            <div style={{width: '49%'}}>
-                                <p>Dapp Radar Id</p>
-                                <input type="number" defaultValue={this.state.dapp.dappRadarId} placeholder="Enter dapp radar id" className="input" name="dappRadarId" onBlur={this.onBlur}/>
                             </div>
                         </div>
 
