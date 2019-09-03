@@ -59,6 +59,7 @@ class HomeController extends Component {
             bonusLimit: 0,
             bonusSent: 0,
             bonusSent2: 0,
+            userAdded: 0
         };
     };
     
@@ -118,6 +119,12 @@ class HomeController extends Component {
         ServerAPI.getSettingByKey("bonus_sent_2").then(bonusSent2 => {
             this.setState({
                 bonusSent2
+            })
+        })
+
+        ServerAPI.getSettingByKey("user_added").then(userAdded => {
+            this.setState({
+                userAdded
             })
         })
     }
@@ -320,11 +327,11 @@ class HomeController extends Component {
         return (
             <div className="group-info">
                 <div className="info">
-                    <p>{this.state.totalUser || 0}</p>
+                    <p>{this.state.totalUser + this.state.userAdded}</p>
                     <p>Users</p>
                 </div> 
                 <div className="info">
-                    <p>{this.state.totalDapp || 0}</p>
+                    <p>{this.state.totalDapp}</p>
                     <p>Dapps</p>
                 </div>
                 <div className="info">
