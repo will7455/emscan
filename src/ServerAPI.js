@@ -18,6 +18,14 @@ const ServerAPI = {
         })
     },
 
+    getMyDApp(page = 1, pageSize = 5, idToken) {
+        return new Promise ( (resolve,reject) => {
+            Axios.get(`${API_ENDPOINT}/user/dapp?page=${page}&pageSize=${pageSize}&idToken=${idToken}`)
+            .then(res => (resolve(res.data)))
+            .catch(error => (reject(error.response.data)))
+        })
+    },
+
     getDAppAddressByDappId(dappId, page = 1, pageSize = 2) {
         return new Promise ( (resolve,reject) => {
             Axios.get(`${API_ENDPOINT}/dapp/address/${dappId}?page=${page}&pageSize=${pageSize}`)
@@ -51,6 +59,14 @@ const ServerAPI = {
     getCountDApp() {
         return new Promise ( (resolve,reject) => {
             Axios.get(`${API_ENDPOINT}/dapp/count`)
+            .then(res => (resolve(res.data)))
+            .catch(error => (reject(error.response.data)))
+        })
+    },
+
+    getCountMyDApp(idToken) {
+        return new Promise ( (resolve,reject) => {
+            Axios.get(`${API_ENDPOINT}/user/dapp/count?idToken=${idToken}`)
             .then(res => (resolve(res.data)))
             .catch(error => (reject(error.response.data)))
         })

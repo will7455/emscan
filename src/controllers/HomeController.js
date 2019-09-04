@@ -61,6 +61,7 @@ class HomeController extends Component {
             bonusLimit: 0,
             bonusSent: 0,
             bonusSent2: 0,
+            showMyDapp: false
         };
     };
     
@@ -80,7 +81,7 @@ class HomeController extends Component {
 
     componentDidMount() {
         
-        this.loadDapp(this.state.page, this.state.key);
+        this.loadDapp(this.state.page, this.state.showMyDapp, this.state.key);
         this.loadInfo();
     } 
 
@@ -131,7 +132,7 @@ class HomeController extends Component {
         })
     }
 
-    loadDapp = async (page, key = false) => {
+    loadMyDapp = async (page, key = false) => {
         this.setState({
             loadingList: true,
             listCoin: false
@@ -139,11 +140,49 @@ class HomeController extends Component {
 
         var listCoin = [];
         var count = 1;
+
+        var verify = await FirebaseService.verify();
+
+        count = await ServerAPI.getCountMyDApp(verify);
+        listCoin = await ServerAPI.getMyDApp(page, this.state.pageSize, verify);
+
+        this.setState({
+            page,
+            totalPage: Math.ceil(count/this.state.pageSize),
+            loadingList: false,
+            showDetail: false,
+            indexDetail: -1,
+            listCoin
+        })
+    }
+
+    loadDapp = async (page, showMyDapp , key = false) => {
+        if (key) {
+            showMyDapp = false;
+            this.setState({
+                showMyDapp
+            })
+        }
+
+
+        if (showMyDapp && this.props.loggedIn && FirebaseService.user) {
+            this.loadMyDapp(page, key);
+            return;
+        }
+
+        this.setState({
+            loadingList: true,
+            listCoin: false
+        })
+
+        var listCoin = [];
+        var count = 1;
+
         if (key && key.trim() !== '') {
             count = await ServerAPI.getCountDAppByKey(key);
             listCoin = await ServerAPI.getDAppByKey(key, page, this.state.pageSize);
         } else {
-            count = await ServerAPI.getCountDApp();
+            count = await ServerAPI.getCountDApp(showMyDapp);
             listCoin = await ServerAPI.getDApp(page, this.state.pageSize);
         }
 
@@ -178,16 +217,16 @@ class HomeController extends Component {
 
     upPage = () => {
         var page = this.state.page + 1 > this.state.totalPage ? this.state.page : this.state.page + 1;
-        this.loadDapp(page, this.state.key);
+        this.loadDapp(page, this.state.showMyDapp, this.state.key);
     }
 
     downPage = () => {
         var page = this.state.page - 1 < 1 ? 1 : this.state.page - 1;
-        this.loadDapp(page, this.state.key);
+        this.loadDapp(page, this.state.showMyDapp, this.state.key);
     }
 
     onClickPage = (index) => {
-        this.loadDapp(index, this.state.key);
+        this.loadDapp(index, this.state.showMyDapp, this.state.key);
     }
 
     onClickPageLitte = (index, indexParent, dappId) => {
@@ -250,7 +289,7 @@ class HomeController extends Component {
                 loadingList: true,
                 indexDetail: 0
             })
-            this.loadDapp(1, e.target.value);
+            this.loadDapp(1, this.state.showMyDapp, e.target.value);
         }
     }
 
@@ -276,6 +315,19 @@ class HomeController extends Component {
         } else {
             window.location = '/ethereum/tx/' + addressFilter
         }
+    }
+
+    filterMyDapp = () => {
+        if (!this.props.loggedIn) {
+            return;
+        }
+        
+        this.loadDapp(1, !this.state.showMyDapp, null);
+
+        this.setState({
+            showMyDapp: !this.state.showMyDapp,
+            key: null
+        })
     }
 
     renderAds() {
@@ -569,6 +621,9 @@ class HomeController extends Component {
                         {this.state.loadingList && <img style={{width: '30px'}} src={LoadingIcon} alt="photos"></img>}
                         <input defaultValue={this.state.key} placeholder="Search" onKeyDown={this.handleKeyDown}></input>
                     </div>
+                    {this.props.loggedIn && <div className="button">
+                        <Button onClick={this.filterMyDapp}>Show {!this.state.showMyDapp ? 'my' : 'all'} dapp</Button>
+                    </div>}
                 </div>
                 {this.renderListCoinInfo()}
                 {this.renderListCoinInfoScreen768()}
