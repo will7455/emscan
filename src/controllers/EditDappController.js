@@ -20,7 +20,8 @@ class EditDappController extends Component {
             blockchain: [
                 {label: 'TRON', value: 1},
                 {label: 'EOS', value: 2},
-                {label: 'ETHEREUM', value: 3}
+                {label: 'ETHEREUM', value: 3},
+                {label: 'IOST', value: 4}
             ],
             status: [
                 {label: 'decline', value: 1},

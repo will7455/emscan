@@ -5,6 +5,7 @@ import Ads from '../assets/images/ads.svg'
 import LogoTron from '../assets/images/logo-tron.svg'
 import LogoEthereum from '../assets/images/logo-ethereum.svg'
 import LogoEos from '../assets/images/logo-eos.svg'
+import LogoIost from '../assets/images/logo-iost.svg'
 import Fooder from '../components/Fooder';
 import Button from '../components/Button';
 import Select from 'react-select'
@@ -46,6 +47,7 @@ class HomeController extends Component {
                 {label: <div><img src={LogoEos} style={{verticalAlign: '-2px'}} alt="photos"/>  EOS</div>, value: 1 },
                 {label: <div><img src={LogoEthereum} style={{verticalAlign: '-2px'}} alt="photos"/>  ETHEREUM</div>, value: 2 },
                 {label: <div><img src={LogoTron} style={{verticalAlign: '-2px'}} alt="photos"/>  TRON</div>, value: 3 },
+                {label: <div><img src={LogoIost} style={{verticalAlign: '-2px'}} alt="photos"/>  IOST</div>, value: 4 },
             ],
             defaultValueAddress: {label: 'ALL', value: 0 },
             listCoin: false,
@@ -445,6 +447,7 @@ class HomeController extends Component {
                                         {value.blockchain_type === "tron" && <img src={LogoTron} alt="photos"></img>}
                                         {value.blockchain_type === "eos" && <img src={LogoEos} alt="photos"></img>}
                                         {value.blockchain_type === "ethereum" && <img src={LogoEthereum} alt="photos"></img>}
+                                        {value.blockchain_type === "iost" && <img src={LogoIost} alt="photos"></img>}
                                     </div>
                                     <div>
                                         <a rel="noopener noreferrer" target='_blank'  href={value.web} className="name">{value.function}</a>
@@ -494,6 +497,14 @@ class HomeController extends Component {
             return  (<div className="protocol">   
                         <div className={`protocol logo-circle logo-ethereum`}>
                             <img src={LogoEthereum} alt="photos"></img>
+                        </div>
+                    </div>)
+        }
+
+        if (blockchainType === "iost") {
+            return  (<div className="protocol">   
+                        <div className={`protocol logo-circle logo-iost`}>
+                            <img src={LogoIost} alt="photos"></img>
                         </div>
                     </div>)
         }
